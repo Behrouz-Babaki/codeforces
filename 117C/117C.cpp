@@ -31,6 +31,7 @@ int a, b, c;
 bool finished;
 
 int main(void) {
+  std::ios_base::sync_with_stdio (false);
   size_t n;
   cin >> n >> ws;
   vvs graph(n, vs());
