@@ -5,23 +5,23 @@
 using std::cout;
 using std::endl;
 using std::cin;
-using std::set;
+using std::multiset;
 using std::max;
 
-int max_pairs(set< int >&, set< int >&);
+int max_pairs(multiset< int >&, multiset< int >&);
 
 int main(void) {
   int m, n, j;
 
   cin >> n;
-  set< int > a;
+  multiset< int > a;
   for(int i=0; i<n; i++) {
     cin >> j;
     a.insert(j);
   }
   
   cin >> m;
-  set< int > b;
+  multiset< int > b;
   for(int i=0; i<m; i++) {
     cin >> j;
     b.insert(j);
@@ -32,16 +32,17 @@ int main(void) {
   return 0;
 }
 
-int max_pairs(set< int >& a, set< int >&b){
+int max_pairs(multiset< int >& a, multiset< int >&b){
+
   if (a.empty() || b.empty())
     return 0;
 
-  set< int >::iterator pos = a.begin();
+  auto pos = a.begin();
   int boy = *pos;
   a.erase(pos);
   int max_val = max_pairs(a, b);
 
-  for (int inc=-1; inc <= 1; inc+=2) {
+  for (int inc=-1; inc <= 1; inc++) {
     int girl = boy + inc;
     pos = b.find(girl);
     if (pos != b.end()) {
@@ -54,3 +55,5 @@ int max_pairs(set< int >& a, set< int >&b){
   a.insert(boy);
   return max_val;
 }
+
+
